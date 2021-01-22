@@ -1,4 +1,4 @@
-# Drag-Drop-List
+# Vanilla JS Drag-Drop-List
 Drag &amp; Drop List using LocalStorage handled with snapshots
 
 This is a Vanilla JavaScript project.
