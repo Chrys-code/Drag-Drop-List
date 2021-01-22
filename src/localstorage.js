@@ -25,7 +25,6 @@ export function snapshot() {
         list.push(obj)
         index++
     })
-    console.log(list)
     return list
 }
 

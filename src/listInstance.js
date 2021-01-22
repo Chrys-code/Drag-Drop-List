@@ -1,9 +1,8 @@
-export const listInstance = (data) => {
+export const listInstance = (data, drag) => {
     const wrapper = document.querySelector('.wrapper')
     var cont = document.createElement('div');
     cont.setAttribute('id', `container_${data.index}`);
     cont.setAttribute('class', `container`);
-
     cont.innerHTML = `
         <div class="card_${data.index}">
             <div class="header">
@@ -17,20 +16,26 @@ export const listInstance = (data) => {
                 </div>
                 <ul id="list_${data.index}" class='list'>
                     <!-- Draggable list content -->
-                    ${data.items && data.items.map(item => {
-        return (
-            `<div class="list_el_wrapper draggable_item" draggable="true">
-                            <li id="${data.index}" class="list_el">${item}</li>
-                            <button id="del-list_el" value=${item} type="submit">X</button>
-                            </div>`
-        )
-    }).join(" ")}
+                    ${createListItem(data, drag)}
                 </ul>    
             </div>
         </div>
         `
     wrapper.appendChild(cont)
+}
 
+const createListItem = (data, drag) => {
+    if (data.items) {
+        return data.items.map(item => {
+            drag
+            return (
+                `<div class="list_el_wrapper draggable_item" draggable="true">
+                            <li id="${data.index}" class="list_el">${item}</li>
+                            <button id="del-list_el" value=${item} type="submit">X</button>
+                            </div>`
+            )
+        }).join(" ")
+    }
 }
 
 export const addTolist = () => {
@@ -52,9 +57,7 @@ export const addTolist = () => {
 }
 
 export const delFromList = () => {
-
     const delBtns = document.querySelectorAll('#del-list_el');
-
     delBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             if (e.target.id === "del-list_el") {
@@ -62,7 +65,8 @@ export const delFromList = () => {
             }
         })
     })
-    return delBtns
+    const lastDelListBtn = delBtns[delBtns.length - 1]
+    return lastDelListBtn
 }
 
 export const deleteList = () => {

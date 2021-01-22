@@ -11,9 +11,10 @@ let counter = 1;
 // Read data in from local storage
 ///////////////////////////////////
 getStorageData().forEach(data => {
-    createList(data)
+    createList(data);
     counter++
 })
+// Apply drag on each item from local store
 listElDrag(document.querySelectorAll('.draggable_item'), document.querySelectorAll('.list'))
 
 /////////////////////////////////
@@ -66,25 +67,23 @@ document.addEventListener('dragend', () => {
 function createList(data) {
     listInstance(data);
     addTolist().addEventListener('click', () => {
-        // Del functionality need to be added on new list elements & drag
+        // Performance issue here by applying drag functionality on all elments instead of the new one
+        // Del & Drag functionality added when new list el created 
         listElDrag(document.querySelectorAll('.draggable_item'), document.querySelectorAll('.list'))
         setStorageData(snapshot())
-        delFromList().forEach(btn => {
-            btn.addEventListener('click', () => {
-                setStorageData(snapshot())
-            })
+        delFromList().addEventListener('click', () => {
+            setStorageData(snapshot())
         })
     })
     deleteList().addEventListener('click', () => {
-        console.log("hii")
         setStorageData(snapshot())
     })
 
     // Read from local storage applies here
-    delFromList().forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log("hii")
+    // Since empty list can be created, result for delFromList() is checked (if it gives back a delete button to hook on)
+    if (delFromList()) {
+        delFromList().addEventListener('click', () => {
             setStorageData(snapshot())
         })
-    })
+    }
 }
