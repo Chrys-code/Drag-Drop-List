@@ -1,17 +1,11 @@
 # Vanilla JS Drag-Drop-List
-Drag &amp; Drop List using LocalStorage handled with snapshots
 
-This is a Vanilla JavaScript project.
-Been learning a lot in the past year but as I finished to cover topics in JS frameworks and stuff... SSG, SSR, PWA, JAM, MERN-stack. I decided to go back to the roots; Vanilla JavaScript.
-As a project to start off on a different level I used JavaScript so far I decided to create a Trello-clone by not using any external help, just to see if I can do it or how long will it take.
+Components:
 
-I have to admit I restarted the project 4 times. Not because I couldn't do it but I did not want to end up on real spaghetti code. Practice makes perfection right?
-
-This project made the spotlight on many things I have been questioning...
-
- - Understand the way of thinking to approach a project. (You know the structure how will I handle the problem)
- - The actual build up of the application. How to apply what I learned so far? Understanding step-to-step.
- - I was questioning myself every step: How would an experienced developer do? - yeah this is why I ended up restarting 4 times, because I knew I can do it better/cleaner
- - Still need a lot to go, but I definietly felt different way of thinking and had different ideas on each try.
- 
-In short this project taught me a lot.
+ - Create list button: Create HTML el with event listener to create Modal for input
+ - Create Modal: Input for list title, options: create / discard, calls Create List button again to display
+ - List Instance: accepts 1 argument: data. (data object contains list title & items) Creates HTML list, append to container/wrapper
+   - Remove List Button: Remove parent node from DOM
+ - List Item Instance: accepts 2 arguments data, parent. Create list item instance for each data.items, append to list instance
+   - Remove List Item from List: Remove parent node from DOM
+   - Add To List Button: Add List Item Instance to List, access to list Input in DOM
